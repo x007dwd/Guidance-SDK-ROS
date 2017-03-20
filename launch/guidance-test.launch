@@ -1,0 +1,6 @@
+<launch>
+<node pkg="guidance" type="guidanceNodeTest" name="guidanceNodeTest"/>
+<machine name="tk1" address="tegra-ubuntu" user="ubuntu" env-loader="/home/ubuntu/catkin_ws/src/Guidance-SDK-ROS/config/ric_env.sh" default="false" />
+
+<node machine="tk1" pkg="guidance" type="guidanceNode" name="guidanceNode"/>
+</launch>
