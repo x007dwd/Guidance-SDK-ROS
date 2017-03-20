@@ -226,7 +226,7 @@ std::cout<<"Error: "<<(e_sdk_err_code)err_code<<" at "<<__LINE__<<","<<__FILE__<
 int main(int argc, char** argv)
 {
     if (argc < 2) {
-        show_images = true;
+        show_images = false;
         verbosity = 2;
     }
 	if(argc==2 && !strcmp(argv[1], "h")){
@@ -251,9 +251,11 @@ int main(int argc, char** argv)
     ultrasonic_pub			= my_node.advertise<sensor_msgs::LaserScan>("/guidance/ultrasonic",1);
 
     /* initialize guidance */
+	std::cout << "There Initialization " << std::endl;
     reset_config();
     int err_code = init_transfer();
     RETURN_IF_ERR(err_code);
+	std::cout << "after transfer Initialization " << std::endl;
 
 	int online_status[CAMERA_PAIR_NUM];
 	err_code = get_online_status(online_status);
@@ -276,6 +278,8 @@ int main(int argc, char** argv)
     /* select data */
     err_code = select_greyscale_image(CAMERA_ID, true);
 	RETURN_IF_ERR(err_code);
+	std::cout << "here select data " << std::endl;
+
     err_code = select_greyscale_image(CAMERA_ID, false);
 	RETURN_IF_ERR(err_code);
     err_code = select_depth_image(CAMERA_ID);
@@ -285,12 +289,16 @@ int main(int argc, char** argv)
     select_obstacle_distance();
     select_velocity();
     /* start data transfer */
+	std::cout << "here start trafer with call back " << std::endl;
+
     err_code = set_sdk_event_handler(my_callback);
     RETURN_IF_ERR(err_code);
     err_code = start_transfer();
     RETURN_IF_ERR(err_code);
 	
 	// for setting exposure
+	std::cout << "here setting exposure " << std::endl;
+
 	exposure_param para;
 	para.m_is_auto_exposure = 1;
 	para.m_step = 10;

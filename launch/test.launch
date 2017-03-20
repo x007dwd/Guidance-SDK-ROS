@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="guidance" type="guidanceNode" name="guidanceNode"/> 
+    <node pkg="guidance" type="guidanceNodeTest" name="guidanceNodeTest"> 
+    </node>
+</launch>
+<!-- TODO nodes, if launched, don't run somehow.  -->
