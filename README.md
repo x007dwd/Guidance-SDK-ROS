@@ -1,3 +1,7 @@
+# Guidance 
+为了使用方便，便于在TK1上读取guidance，而在PC上显示结果，我分别增加了一些配置文件和launch文件。使得在Tk1 Onboard Prcocessor运行guidance的读取节点。在PC上可以看到发布的topics。
+
+这个branch对应PC上的包。两边的src文件是一样的，可以单独编译运行。
 # Gudiance-SDK-ROS
 The official ROS package of Guidance SDK for 32/64 bit Ubuntu and XU3.
 
